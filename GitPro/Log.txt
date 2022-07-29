@@ -1,0 +1,12 @@
+关于ElementUI 和 Element-Plus 中 input 组件的使用区别
+ElementUI 修改背景颜色  .Maclass >>> .el-input__inner { background : color }
+Element-Plus 修改背景颜色 :deep(.el-input__wrapper) { background : color }
+[Waring] the >>> and /deep/ combinators have been deprecated. use :deep() instead.  Vue3 使用:deep()做深度选择
+
+<script lang="ts" setup></script>中使用路由导航的方法
+import { useRouter } from 'vue-router'  //引用
+const router = useRouter();
+router.push({
+    path: '/home'
+})     
+注： 编程式导航route.push与声明式导航<router-link to=""></router-link>是等价的
