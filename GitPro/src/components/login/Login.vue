@@ -1,17 +1,27 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref , computed } from 'vue'
 import { ElMessage } from 'element-plus';
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
 const router = useRouter();
-const name = ref()
-const disabled = ref(false)
-const password = ref("")
+const store = useStore();
+let name = ref<string>("")
+const password = ref<string>("")
+const disabled = computed({
+    get: () => {
+        return !(name.value.length > 0 && password.value.length > 0)
+    },
+    set : () => {}
+})
+
+console.log(store)
 
 function login() {
     ElMessage({
         message: '登录成功，欢迎你',
         type: 'success',
+        duration: 1000
     })
     setTimeout(() => {
         router.push({
@@ -92,12 +102,18 @@ function login() {
 :deep(.el-input__wrapper) {
     border: 0;
     font-size: 17px;
-    color: #fff;
     background-color: rgb(59, 133, 144, 0.85);
+    border-color: rgb(59, 133, 144, 0.85);
 }
 
-:deep(.el-input__inner) {
+:deep(.el-input__inner){
     color: #fff;
+    border: 0;
+}
+
+:deep(.el-button) {
+    background-color: rgba(237, 55, 10, 0.786);
+    height: 40px;
 }
 
 .redLine {

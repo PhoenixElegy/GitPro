@@ -10,3 +10,8 @@ router.push({
     path: '/home'
 })     
 注： 编程式导航route.push与声明式导航<router-link to=""></router-link>是等价的
+
+ElementUI 与 Element-Plus 的具体组件命名
+#大体没有大区别，细微之处需要查看官网，移植十分麻烦
+[Waring]ElementUI:<el-submenu> 与 Element-Plus:<el-sub-menu>
+[Waring]ElementUI:<i class="el-icon-coin"></i> 与 Element-Plus:<el-icon><location /></el-icon>  icon差异最大，plus还要重新引入
