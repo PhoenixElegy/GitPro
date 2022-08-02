@@ -15,3 +15,9 @@ ElementUI 与 Element-Plus 的具体组件命名
 #大体没有大区别，细微之处需要查看官网，移植十分麻烦
 [Waring]ElementUI:<el-submenu> 与 Element-Plus:<el-sub-menu>
 [Waring]ElementUI:<i class="el-icon-coin"></i> 与 Element-Plus:<el-icon><location /></el-icon>  icon差异最大，plus还要重新引入
+
+关于ElementPlus中菜单弹出框的宽度调整问题，默认值为200px
+特别注意：ElementPlus中上述弹出框的位置挂载在index.html的body下，与<id="app">的位置是并列的
+因此在<scope>的影响下，在页面添加的具体样式，如.el-menu--popup{min-width: 155px;}是不会作用到pop窗口的？
+同理在index.html的<style>下添加可以作用  ----即全局样式
+解决方案：用独特类名（防止全局污染），使用popper-class属性挂载（Element-Plus特性）

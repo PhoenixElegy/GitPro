@@ -6,7 +6,7 @@ import { useStore } from 'vuex'
 
 const router = useRouter();
 const store = useStore();
-let name = ref<string>("")
+const name = ref<string>("")
 const password = ref<string>("")
 const disabled = computed({
     get: () => {
@@ -108,6 +108,7 @@ function login() {
 
 :deep(.el-input__inner){
     color: #fff;
+    background-color: rgb(59, 133, 144, 0.85);
     border: 0;
 }
 
