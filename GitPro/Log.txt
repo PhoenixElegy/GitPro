@@ -21,3 +21,19 @@ ElementUI 与 Element-Plus 的具体组件命名
 因此在<scope>的影响下，在页面添加的具体样式，如.el-menu--popup{min-width: 155px;}是不会作用到pop窗口的？
 同理在index.html的<style>下添加可以作用  ----即全局样式
 解决方案：用独特类名（防止全局污染），使用popper-class属性挂载（Element-Plus特性）
+
+2022/8/10
+关于Chrome以及Edge自动填写账号密码时，input框出现白色底框的原因
+浏览器自动填写账号密码之后，会为input自动添加一个类，在Debug区可以查看 类名[:-internal-autofill-selected] 注意其下内容中的[!import]
+因此在本例可以选择如下解决办法：
+:deep(.el-input :-internal-autofill-selected){
+    -webkit-text-fill-color: #fff !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+    box-shadow: none;
+}
+新问题：Elment-Plus不能完全响应以上修改，最后input框会出现白色边框，白色边框的修改如下：
+:deep(.el-input__wrapper) {
+    box-shadow: none;
+}
+不是边框的宽度，也不是内外边距，试过了所有关于border的设置，最后发现是阴影；
+完成input框与背景的纯色融合，想增加交互性可以设置[.el-input__wrapper.is-focus] 和 [.el-input__wrapper:hover]两个属性，具体参考[Login.vue]

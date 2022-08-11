@@ -99,12 +99,7 @@ function login() {
     background-size: 100% 100%;
 }
 
-:deep(.el-input__wrapper) {
-    border: 0;
-    font-size: 17px;
-    background-color: rgb(59, 133, 144, 0.85);
-    border-color: rgb(59, 133, 144, 0.85);
-}
+
 
 :deep(.el-input__inner){
     color: #fff;
@@ -122,6 +117,29 @@ function login() {
     background-color: #ffffff;
     height: 3px;
     margin: 0 auto;
+}
+
+:deep(.el-input :-internal-autofill-selected){
+    -webkit-text-fill-color: #fff !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+    box-shadow: none;
+}
+
+:deep(.el-input__wrapper) {
+    border: 0;
+    background-color: rgb(59, 133, 144, 0.85);
+    border-color: rgb(59, 133, 144, 0.85);
+    border-radius: 5px !important;
+    background-image: none !important;
+    box-shadow: none;
+}
+
+:deep(.el-input__wrapper:hover){
+    box-shadow: 0 0 0 1px #fff;
+}
+
+:deep(.el-input__wrapper.is-focus){
+    box-shadow: 0 0 0 1px #fff;
 }
 </style>
 
