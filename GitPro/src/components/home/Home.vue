@@ -1,11 +1,24 @@
 <script lang="ts" setup>
 import { ref } from "vue"
 import Heard from "../header.vue"
+import { useRouter } from 'vue-router'
 
 const isCollapse = ref(true);
+const route = useRouter()
 function openMapTree() {
     isCollapse.value = !isCollapse.value
 }
+
+function handleSelect(){
+}
+
+const handleClick = () => {
+
+}
+
+// function handleClick(){
+
+// }
 
 </script>
 
@@ -19,7 +32,7 @@ function openMapTree() {
             margin: auto;
             margin-left: 12.5px;
             margin-left: 20px;
-          " src="../../assets/head.jpg" @click="openMapTree" />
+           " src="../../assets/head.jpg" @click="openMapTree" />
                 <div style="margin: auto; margin-left: 10px; font-size: 17px; width: 500px" v-show="!isCollapse">
                     Test
                 </div>
@@ -37,29 +50,40 @@ function openMapTree() {
                     </el-icon>
                 </div>
             </el-container>
-            <el-menu style="height: 94%" text-color="#000000" :collapse="isCollapse" active-text-color="#ffd04b">
+            <el-menu style="height: 94%" 
+                    text-color="#000000" 
+                    :collapse="isCollapse" 
+                    active-text-color="#ffd04b"
+                    @select="handleSelect"
+                    @click="handleClick"
+                    router>
                 <el-sub-menu index="1">
                     <template #title>
                         <el-icon>
                             <location />
                         </el-icon>
-                        <span>应用</span>
+                        <span>Echart</span>
                     </template>
+                    <el-menu-item index="/home/page1">chart</el-menu-item>
                 </el-sub-menu>
                 <el-sub-menu index="2">
                     <template #title>
                         <el-icon>
                             <Tickets />
                         </el-icon>
-                        <span>工具</span>
+                        <span>Game</span>
                     </template>
+                    <el-menu-item index="/home/game1">game1</el-menu-item>
+                    <el-menu-item index="/home/game2">game2</el-menu-item>
+                    <el-menu-item index="/home/game3">game3</el-menu-item>
+                    <el-menu-item index="/home/game4">game4</el-menu-item>
                 </el-sub-menu>
                 <el-sub-menu index="3">
                     <template #title>
                         <el-icon>
                             <MoreFilled />
                         </el-icon>
-                        <span>更多</span>
+                        <span>Picture</span>
                     </template>
                 </el-sub-menu>
             </el-menu>

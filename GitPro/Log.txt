@@ -37,3 +37,9 @@ ElementUI 与 Element-Plus 的具体组件命名
 }
 不是边框的宽度，也不是内外边距，试过了所有关于border的设置，最后发现是阴影；
 完成input框与背景的纯色融合，想增加交互性可以设置[.el-input__wrapper.is-focus] 和 [.el-input__wrapper:hover]两个属性，具体参考[Login.vue]
+
+[Vue Waring]Invalid event arguments: event validation failed for event "click"
+[Vue Waring]Invalid event arguments: event validation failed for event "select"
+该警告出现在el-menu中的el-menu-item中，当每个item没有"唯一"标识时会出现以上警告，例如可以为每个item添加index
+<el-menu-item index="2-1">game1</el-menu-item>
+无效的事件参数:事件“点击”的事件验证失败...

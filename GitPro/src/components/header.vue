@@ -5,10 +5,10 @@ import { useRouter } from 'vue-router'
 
 const activeIndex = ref('0')
 const route = useRouter()
-const handleSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+const handleSelect = ( key: string, keyPath: string[]) => {
+  console.log( key, keyPath)
   if(key === "0"){
-    route.push("/page1")
+    route.push("/home/page1")
   }
   if(key === "2-3"){
     route.push("/login")
