@@ -77,6 +77,9 @@ const handleClick = () => {
                     <el-menu-item index="/home/game2">game2</el-menu-item>
                     <el-menu-item index="/home/game3">game3</el-menu-item>
                     <el-menu-item index="/home/game4">game4</el-menu-item>
+                    <el-menu-item index="/home/game5">game5</el-menu-item>
+                    <el-menu-item index="/home/game6">game6</el-menu-item>
+                    <el-menu-item index="/home/game7">game7</el-menu-item>
                 </el-sub-menu>
                 <el-sub-menu index="3">
                     <template #title>

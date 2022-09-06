@@ -43,3 +43,16 @@ ElementUI 与 Element-Plus 的具体组件命名
 该警告出现在el-menu中的el-menu-item中，当每个item没有"唯一"标识时会出现以上警告，例如可以为每个item添加index
 <el-menu-item index="2-1">game1</el-menu-item>
 无效的事件参数:事件“点击”的事件验证失败...
+
+String.replace
+replace() 方法返回一个由替换值（replacement）替换部分或所有的模式（pattern）匹配项后的新字符串。
+模式可以是一个字符串或者一个正则表达式，替换值可以是一个字符串或者一个每次匹配都要调用的回调函数。
+如果pattern是字符串，则仅替换第一个匹配项。
+注意返回的是新字符串而且不会修改原字符串。
+squaresArray[currentIndex].class.replace("frog"," ") //原值squaresArray[currentIndex].class不会改变
+squaresArray[currentIndex].class = squaresArray[currentIndex].class.replace("frog"," ") //需要重新赋值则会改变
+
+v-for可以取整数
+<div>
+    <span v-for="n in 10">{{ n }} </span>
+</div>
