@@ -16,6 +16,17 @@ const router = createRouter({
                 component: () => import("../pages/Echart/page1.vue")
             },
             {
+                path: "/home/page2",
+                name: "page2",
+                component: () => import("../pages/Echart/page2.vue")
+            },
+            
+            {
+                path: "/home/page3",
+                name: "page3",
+                component: () => import("../pages/Echart/page3.vue")
+            },
+            {
                 path: "/home/game1",
                 name: "game1",
                 component: () => import("../pages/Game/game1.vue")
@@ -50,6 +61,11 @@ const router = createRouter({
                 path: "/home/game7",
                 name: "game7",
                 component: () => import("../pages/Game/game7.vue")
+            },
+            {
+                path: "/home/Map1",
+                name: "Map1",
+                component: () => import("../pages/ArcGIS/Map1.vue")
             }
         ],
         },

@@ -56,3 +56,34 @@ v-for可以取整数
 <div>
     <span v-for="n in 10">{{ n }} </span>
 </div>
+
+Echart的使用
+npm安装完后在具体页面   import * as echarts from 'echarts'  全部引入，也可以按需
+Echart对dom的绑定要在 onMounted(() => {//Init()}) 中,也就是组件加载完后，否则报错
+绑定方法  var myChart = echarts.init(chartDiv.value as HTMLElement);
+[Vue Waring]Unhandled error during execution of scheduler flush. This is likely a Vue internals bug.
+
+Echart的更新
+在dom更新之后，Echart不会重新渲染，所以需要在 onUpdated(() => {//Init()}) 中重新渲染视图
+热更新只会更改dom的属性，Echart的重新渲染还是需要重新加载页面？
+
+Echart按需引入的方法参考
+1. 引入echarts核心模块
+import * as echarts from 'echarts/core'
+2. 引入具体图表组件，后缀都为Chart；引入该图表组件对应的数据格式，后缀为SeriesOption
+import {
+    ThemeRiverChart,
+    ThemeRiverSeriesOption
+} from 'echarts/charts';
+3. 引入渲染器，CanvasRenderer 或者 SVGRenderer，必须引入其中一个
+import {
+    CanvasRenderer
+} from 'echarts/renderers';
+4. 注册使用的组件
+echarts.use(
+    [SingleAxisComponent, TooltipComponent, LegendComponent, ThemeRiverChart, CanvasRenderer]
+);
+(TS)5*. TS 组装具体的数据技巧方法，后缀为Option
+type EChartsOption = echarts.ComposeOption<
+    SingleAxisComponentOption | TooltipComponentOption | LegendComponentOption | ThemeRiverSeriesOption
+>

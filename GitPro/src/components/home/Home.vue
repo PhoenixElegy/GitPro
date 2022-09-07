@@ -64,7 +64,9 @@ const handleClick = () => {
                         </el-icon>
                         <span>Echart</span>
                     </template>
-                    <el-menu-item index="/home/page1">chart</el-menu-item>
+                    <el-menu-item index="/home/page1">chart-全局</el-menu-item>
+                    <el-menu-item index="/home/page2">chart-按需</el-menu-item>
+                    <el-menu-item index="/home/page3">chart-Map</el-menu-item>
                 </el-sub-menu>
                 <el-sub-menu index="2">
                     <template #title>
@@ -86,8 +88,9 @@ const handleClick = () => {
                         <el-icon>
                             <MoreFilled />
                         </el-icon>
-                        <span>Picture</span>
+                        <span>ArcGIS for JavaScript</span>
                     </template>
+                    <el-menu-item index="/home/Map1">Map1</el-menu-item>
                 </el-sub-menu>
             </el-menu>
         </el-aside>

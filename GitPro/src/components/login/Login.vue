@@ -15,8 +15,6 @@ const disabled = computed({
     set : () => {}
 })
 
-console.log(store)
-
 function login() {
     ElMessage({
         message: '登录成功，欢迎你',

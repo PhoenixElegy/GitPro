@@ -135,12 +135,12 @@ document.addEventListener('keydown', moveShooter)
 document.addEventListener('keydown', shoot)
 
 onUnmounted(() => {
-    document.removeEventListener('keydown', moveInvaders)
+    document.removeEventListener('keydown', moveShooter)
     document.removeEventListener('keydown', shoot)
 })
 </script>
 <template>
-    <h3>This is Game4: Connect Four</h3>
+    <h3>This is Game7: Space Invader</h3>
     <h2>Result: {{ result }}</h2>
     <h2>Score: {{ score }}</h2>
     <div class="grid">

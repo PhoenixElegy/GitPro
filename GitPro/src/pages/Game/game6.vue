@@ -286,7 +286,7 @@ const domClick = function (index: number) {
 
 </script>
 <template>
-    <h3>This is Game4: Connect Four</h3>
+    <h3>This is Game6: Connect Four</h3>
     <h2>Result: {{result}}</h2>
     <div class="grid">
         <div v-for="(grid, index) in gridArray" @click="domClick(index)" :key="index" :class="grid.class"></div>
