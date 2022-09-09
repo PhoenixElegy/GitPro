@@ -90,7 +90,8 @@ const handleClick = () => {
                         </el-icon>
                         <span>ArcGIS for JavaScript</span>
                     </template>
-                    <el-menu-item index="/home/Map1">Map1</el-menu-item>
+                    <el-menu-item index="/home/Map1">Map1-AMD</el-menu-item>
+                    <el-menu-item index="/home/Map2">Map2-CORE</el-menu-item>
                 </el-sub-menu>
             </el-menu>
         </el-aside>

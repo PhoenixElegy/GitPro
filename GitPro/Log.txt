@@ -87,3 +87,104 @@ echarts.use(
 type EChartsOption = echarts.ComposeOption<
     SingleAxisComponentOption | TooltipComponentOption | LegendComponentOption | ThemeRiverSeriesOption
 >
+
+Tomcat10.0，离线部署好的ArcGIS JS API放大缩小按钮不显示
+1.起初怀疑是css文件没有加载成功，后来注释了 css: `${AGS_SDK}/esri/themes/light/main.css` 发现并不是
+2.搜索之后发现配置Access-Control-Allow-***可以解决问题，但原文是IIS配置下的，于是搜索Tomcat的配置解决
+3.最后解决方案就是在tomcat目录下 ../Tomcat10.0/conf/web.xml  , 修改添加以下内容
+<filter>
+		<filter-name>CorsFilter</filter-name>
+		<filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+		<init-param>
+			<param-name>cors.allowed.origins</param-name>
+			<param-value>*</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.allowed.methods</param-name>
+			<param-value>GET,POST,HEAD,OPTIONS,PUT</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.allowed.headers</param-name>
+			<param-value>Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.exposed.headers</param-name>
+			<param-value>Access-Control-Allow-Origin,Access-Control-Allow-Credentials</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.support.credentials</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.preflight.maxage</param-name>
+			<param-value>10</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CorsFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+行数在4700左右，就是最后标签的前面就可以，重启服务发现问题已解决。
+(连带着加载地图时的一堆跨域报错也没了，如果挂了梯子还是跨域报错，不挂就不会，但是目前来看两者都不影响使用，浏览器安全策略的特性)
+
+2022/9/9
+关于esri-loader和@arcgis/core
+1. 先说一下esri-loader，可以去请求在线的js，然后loadMoudle，就是可能会比较慢，确实不方便，感觉初学需要省事了解可以试试，一个html就行了
+2. 更好的就是从官网上下载离线包部署下，个人计算机用tomcat或者IIS都可以，项目同样的，大概请求会快些
+3. 由于内网中服务器在自己的手上，所以跨域响应可以自己来定义，终于不用被控制台那一堆红色的东西糟心了哈哈
+4. 最后就是代码的写法了，vue3运行一个地图要等dom完全加载后在绑定视图和地图，所以逻辑一般都在 onMounted() 中，其他的写法还要继续学习
+
+1. @arcgis/core 上线时间不长，使用的感觉还不错，重点是和官网的例子无缝接轨，拿来就可以用了，用来学习是十分不错的
+2. 同样逻辑一般都在dom加载之后实现，不然控制台不会报错也不会显示地图！
+3. 例子中的很多地图在加载的时候控制台还是会出现很多的错误信息，但是地图加载又没有问题，问题暂时搁置，可能是我的网不好
+4. 申请完API_Key后就可以使用很多其他baseMap了，奇妙的是同样的代码，有key和没有key的控制台完全不一样...有key的控制台几乎不会报错...
+5. 贴一下官网上的，有些图挺好看的
+					With API Keys
+  Value                                       Source
+arcgis-imagery	                          Imagery Hybrid
+arcgis-imagery-standard	                  Imagery
+arcgis-imagery-labels	                  The reference layer from arcgis-imagery
+arcgis-light-gray	                      Light Gray Canvas
+arcgis-dark-gray	                      Dark Gray Canvas
+arcgis-navigation	                      Navigation
+arcgis-navigation-night	                  Navigation (Night)
+arcgis-streets	                          Streets
+arcgis-streets-night	                  Streets (Night)
+arcgis-streets-relief	                  Streets (with Relief)
+arcgis-topographic	                      Topographic
+arcgis-oceans	                          Oceans
+osm-standard	                          OpenStreetMap
+osm-standard-relief	                      OpenStreetMap (with Relief)
+osm-streets	                              OpenStreetMap (Streets)
+osm-streets-relief	                      OpenStreetMap (Streets with Relief)
+osm-light-gray	                          OpenStreetMap (Light Gray Canvas)
+osm-dark-gray	                          OpenStreetMap (Dark Gray Canvas)
+arcgis-terrain	                          Terrain with Labels
+arcgis-community	                      Community Map
+arcgis-charted-territory	              Charted Territory Map
+arcgis-colored-pencil	                  Colored Pencil Map
+arcgis-nova	                              Nova Map
+arcgis-modern-antique	                  Modern Antique Map
+arcgis-midcentury	                      Mid-Century Map
+arcgis-newspaper	                      Newspaper Map
+arcgis-hillshade-light	                  The hillshade layer from arcgis-topographic
+arcgis-hillshade-dark
+                    Without API Keys
+	Value                                      Source
+satellite	                              World Imagery
+hybrid	                                  Hybrid Reference Layer and World Imagery
+oceans	                                  World Ocean Reference and World Ocean Base
+osm	                                      OpenStreetMapLayer
+terrain	                                  World Reference Overlay and World Terrain Base
+dark-gray-vector	                      Dark Gray Canvas
+gray-vector	                              Light Gray Canvas
+streets-vector	                          World Street Map
+streets-night-vector	                  World Street Map (Night)
+streets-navigation-vector	              World Navigation Map
+topo-vector	                              World Hillshade and World Topographic Map
+streets-relief-vector	                  World Hillshade and World Street Map (with Relief)
+topo (deprecated)	                      This basemap/service is now in Mature Support and is no longer updated. Please use topo-vector instead. World Topo Map
+streets (deprecated)	                  This basemap/service is now in Mature Support and is no longer updated. Please use streets-vector instead. World Street Map
+dark-gray (deprecated)	                  This basemap/service is now in Mature Support and is no longer updated. Please use dark-gray-vector instead. World Dark Gray Reference and World Dark Gray Base
+gray (deprecated)	                      This basemap/service is now in Mature Support and is no longer updated. Please use gray-vector instead. World Light Gray Reference and World Light Gray Base
+national-geographic (deprecated)	      This basemap/service is now in Mature Support and is no longer updated. Please use the National Geographic Style WebMap instead. NatGeo World Map

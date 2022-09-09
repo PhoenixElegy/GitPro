@@ -12,12 +12,16 @@ export class MapApp {
         });
     }
 
-    async initMap(container :string) {
-        const [Map, MapView,config] = await loadModules(['esri/Map', 'esri/views/MapView','esri/config']);
+    async initMap(container: string) {
+        const [Map, MapView, config , BasemapToggle,BasemapGallery] = await loadModules(
+            ['esri/Map', 'esri/views/MapView', 'esri/config', "esri/widgets/BasemapToggle",
+                "esri/widgets/BasemapGallery"]);
 
+        
         //satellite  卫星影像
         const map = new Map({ basemap: 'oceans' });
-        this.mapView = new MapView({
+
+        const view = new MapView({
             map, container,
             extent: {
                 // autocasts as new Extent()
@@ -28,6 +32,28 @@ export class MapApp {
                 spatialReference: 102100
             }
         });
+
+        
+
+        const basemapToggle = new BasemapToggle({
+            view: view,
+            nextBasemap: "oceans"
+        });
+
+        view.ui.add(basemapToggle,'bottom-right')
+
+        const basemapGallery = new BasemapGallery({
+            view: view,
+            source: {
+              query: {
+                title: '"World Basemaps for Developers" AND owner:esri'
+              }
+            }
+          });
+
+          view.ui.add(basemapGallery, "top-right");
+
+        this.mapView = view
     }
     // add a feature layer to map
     // async addFeatureLayer() {
@@ -52,21 +78,21 @@ export class Map3DApp {
         });
     }
 
-    async initMap(container :string) {
-        const [Map, SceneView, config] = await loadModules(['esri/Map', 'esri/views/SceneView','esri/config']);
+    async initMap(container: string) {
+        const [Map, SceneView, config] = await loadModules(['esri/Map', 'esri/views/SceneView', 'esri/config']);
 
         //satellite  卫星影像
-        const map = new Map({ basemap: 'oceans' , ground: "world-elevation"});
+        const map = new Map({ basemap: 'oceans', ground: "world-elevation" });
         this.mapView = new SceneView({
             map, container,
             camera: {
                 position: {
-                  x: -118.808, //Longitude
-                  y: 33.961, //Latitude
-                  z: 2000 //Meters
+                    x: -118.808, //Longitude
+                    y: 33.961, //Latitude
+                    z: 2000 //Meters
                 },
                 tilt: 75
-              }
+            }
         });
     }
     // add a feature layer to map
