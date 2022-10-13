@@ -71,6 +71,16 @@ const router = createRouter({
                 path: "/home/Map2",
                 name: "Map2",
                 component: () => import("../pages/ArcGIS/MapCore.vue")
+            },
+            {
+                path: "/home/Map3",
+                name: "Map3",
+                component: () => import("../pages/ArcGIS/AddFeatureLayer.vue")
+            },
+            {
+                path: "/home/Map4",
+                name: "Map4",
+                component: () => import("../pages/ArcGIS/MainMap.vue")
             }
         ],
         },

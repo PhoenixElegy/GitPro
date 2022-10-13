@@ -1,3 +1,4 @@
+
 <script lang="ts" setup>
 import { My_Key } from '../../utils/MyApiKey'
 import MapView from "@arcgis/core/views/MapView";
@@ -20,30 +21,37 @@ onMounted(() => {
         container: "viewDiv" // Div element
     });
 
-    
+
     const basemapToggle = new BasemapToggle({
-            view: view,
-            nextBasemap: "oceans"
-        });
+        view: view,
+        nextBasemap: "oceans"
+    });
 
-        view.ui.add(basemapToggle,'bottom-right')
+    view.ui.add(basemapToggle, 'bottom-right')
 
-        const basemapGallery = new BasemapGallery({
-            view: view,
-            source: {
-              query: {
+    const basemapGallery = new BasemapGallery({
+        view: view,
+        source: {
+            query: {
                 title: '"World Basemaps for Developers" AND owner:esri'
-              }
             }
-          });
+        }
+    });
 
-          view.ui.add(basemapGallery, "top-right");
+    view.ui.add(basemapGallery, "top-right");
+    // view.on('click',() => {
+    //     console.log("click")
+    // })
 
+    console.log("first")
+    
 })
+
+console.log("second")
 
 </script>
 
 <template>
-    <div id="viewDiv" style="height: 100%; width: 100%;">aa
+    <div id="viewDiv" style="height: 100%; width: 100%;">
     </div>
 </template>
