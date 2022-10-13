@@ -145,7 +145,7 @@ const switchMapBtn = function (str :string ) {
         MapView | SceneView extends View extends DomContainer
     ```
     - 修改，然后失败
-    <img src="./Mdpic/Container.png" />
+    <img src="Mdpic/Container.png" />
 + 失败原因，未知
 ```JavaScript
     const view = new MapView({

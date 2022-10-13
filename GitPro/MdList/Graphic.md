@@ -9,7 +9,7 @@ graphic译为“图形”，是一个在Map（二维）或者scene（三维）�
 
 ## graphic是如何工作的
 graphics能被添加到图形层、叠加层或视图等。为了保证它总能被看见，它们通常被添加到图层的最顶层。当一个地图视图显示一个地图时，graphics是最后被显示的。
-<img src="./Mdpic/graphicMap.png" />
+<img src="Mdpic/graphicMap.png" />
 
 ## graphic组成
 graphic主要由geometry、symbol、attributes三部分组成
