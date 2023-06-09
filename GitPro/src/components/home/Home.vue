@@ -94,6 +94,7 @@ const handleClick = () => {
                     <el-menu-item index="/home/Map2">Map2-CORE</el-menu-item>
                     <el-menu-item index="/home/Map3">Add FeatureLayer</el-menu-item>
                     <el-menu-item index="/home/Map4">Main Map</el-menu-item>
+                    <el-menu-item index="/home/Map5">Map Engine</el-menu-item>
                 </el-sub-menu>
             </el-menu>
         </el-aside>

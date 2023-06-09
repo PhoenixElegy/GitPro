@@ -44,7 +44,7 @@ const createDom = function (str: string) {
 const trailheadsLayer = new FeatureLayer({
         //apiKey: My_Key,
         url: "https://services7.arcgis.com/bVI3DntuuPfC2UnE/arcgis/rest/services/point_samples/FeatureServer/0"
-    });
+});
 
 const query = new Query();
 query.where = "1=1";
@@ -105,7 +105,7 @@ const switchMapBtn = function (str :string ) {
             appConfig.sceneView.container = appConfig.container as HTMLDivElement
             appConfig.activeView = appConfig.sceneView
             mapType.value = "3D"
-            //appConfig.sceneView.map.add(trailheadsLayer)
+            appConfig.sceneView.map.add(trailheadsLayer)
 
             //3DMap Add | remove Function
             // AddRemove3DMap()
@@ -165,14 +165,9 @@ onMounted(() => {
     //         appConfig.sceneView.goTo(results.extent, opts);  // go to the extent of the results satisfying the query
     //     } 
     // });
-    map3D.add(trailheadsLayer)
-    map2D.add(trailheadsLayer)
-    
-
+    //map3D.add(trailheadsLayer)
+    //map2D.add(trailheadsLayer)
 })
-
-
-
 </script>
 
 <template>

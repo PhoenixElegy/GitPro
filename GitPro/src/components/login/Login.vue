@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref , computed } from 'vue'
+import { ref, computed } from 'vue'
 import { ElMessage } from 'element-plus';
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
@@ -12,7 +12,7 @@ const disabled = computed({
     get: () => {
         return !(name.value.length > 0 && password.value.length > 0)
     },
-    set : () => {}
+    set: () => { }
 })
 
 function login() {
@@ -34,11 +34,12 @@ function login() {
         <div id="loginMenu">
             <div id="icon"></div>
             <div class="input">
-                <el-input v-model="name" prefix-icon="user" placeholder="请输入用户名"></el-input>
+                <el-input v-model="name" prefix-icon="user" placeholder="请输入用户名" autocomplete="new-password"></el-input>
             </div>
             <div class="redLine"></div>
             <div class="input">
-                <el-input v-model="password" prefix-icon="lock" placeholder="请输入密码" show-password></el-input>
+                <el-input type="text" v-model="password" prefix-icon="lock" placeholder="请输入密码" show-password
+                    autocomplete="new-password"></el-input>
             </div>
             <div class="input_login">
                 <el-button @click="login" type="primary" :disabled="disabled"
@@ -99,7 +100,7 @@ function login() {
 
 
 
-:deep(.el-input__inner){
+:deep(.el-input__inner) {
     color: #fff;
     background-color: rgb(59, 133, 144, 0.85);
     border: 0;
@@ -117,10 +118,17 @@ function login() {
     margin: 0 auto;
 }
 
-:deep(.el-input :-internal-autofill-selected){
+:deep(.el-input :-internal-autofill-selected) {
     -webkit-text-fill-color: #fff !important;
     transition: background-color 5000s ease-in-out 0s !important;
     box-shadow: none;
+}
+
+input:-internal-autofill-selected {
+    appearance: menulist-button;
+    background-image: none !important;
+    background-color: rgb(59, 133, 144, 0.85) !important;
+    color: fieldtext !important;
 }
 
 :deep(.el-input__wrapper) {
@@ -132,11 +140,11 @@ function login() {
     box-shadow: none;
 }
 
-:deep(.el-input__wrapper:hover){
+:deep(.el-input__wrapper:hover) {
     box-shadow: 0 0 0 1px #fff;
 }
 
-:deep(.el-input__wrapper.is-focus){
+:deep(.el-input__wrapper.is-focus) {
     box-shadow: 0 0 0 1px #fff;
 }
 </style>

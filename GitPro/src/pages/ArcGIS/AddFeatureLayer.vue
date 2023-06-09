@@ -6,7 +6,7 @@ import config from '@arcgis/core/config'
 import FeatureLayer from '@arcgis/core/layers/FeatureLayer'
 import { onMounted } from "vue";
 import Query from "@arcgis/core/rest/support/Query";
-
+import WebTileLayer from '@arcgis/core/layers/WebTileLayer'
 
 let opts = {
   duration: 2000  // Duration of animation will be 2 seconds
